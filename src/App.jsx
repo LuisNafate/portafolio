@@ -124,6 +124,54 @@ function App() {
         ease: 'none',
         scrollTrigger: { start: 0, end: 'max', scrub: 0.2 },
       })
+
+      if (!matchMedia('(prefers-reduced-motion: reduce)').matches) {
+        const wipe = root.current.querySelector('.chapter-wipe')
+        const wipeName = wipe.querySelector('.chapter-name')
+        const wipeIndex = wipe.querySelector('.chapter-index')
+        let chapterTimeline
+        const chapters = [
+          ['.manifesto', '01', 'MANIFIESTO', '#d9ff43'],
+          ['.work', '02', 'PROYECTOS', '#f1f3e9'],
+          ['.capabilities', '03', 'CAPACIDADES', '#b18cff'],
+          ['.about', '04', 'PERFIL', '#6dd6ff'],
+          ['footer', '05', 'CONTACTO', '#d9ff43'],
+        ]
+
+        const playChapterTransition = (index, name, color) => {
+          chapterTimeline?.kill()
+          gsap.killTweensOf([wipe, wipeName, wipeIndex])
+          wipeName.textContent = name
+          wipeIndex.textContent = index
+          chapterTimeline = gsap.timeline({ overwrite: true })
+          chapterTimeline
+            .set(wipe, { yPercent: 102, backgroundColor: color, autoAlpha: 1 })
+            .set([wipeName, wipeIndex], { yPercent: 120, autoAlpha: 0 })
+            .to(wipe, { yPercent: 0, duration: 0.34, ease: 'power4.in' })
+            .to([wipeIndex, wipeName], { yPercent: 0, autoAlpha: 1, duration: 0.25, stagger: 0.04, ease: 'power3.out' }, '-=0.08')
+            .to([wipeIndex, wipeName], { yPercent: -120, autoAlpha: 0, duration: 0.2, stagger: 0.03, ease: 'power3.in', delay: 0.12 })
+            .to(wipe, { yPercent: -102, duration: 0.42, ease: 'power4.inOut' }, '-=0.1')
+            .set(wipe, { yPercent: 102, autoAlpha: 0 })
+        }
+
+        chapters.forEach(([selector, index, name, color]) => {
+          ScrollTrigger.create({
+            trigger: selector,
+            start: 'top 72%',
+            onEnter: () => playChapterTransition(index, name, color),
+            onEnterBack: () => playChapterTransition(index, name, color),
+          })
+        })
+
+        gsap.utils.toArray('.section-heading h2, .about-copy h2, .footer-copy h2').forEach((title) => {
+          gsap.fromTo(title, { yPercent: 10, rotate: 1.2 }, {
+            yPercent: -4,
+            rotate: 0,
+            ease: 'none',
+            scrollTrigger: { trigger: title, start: 'top bottom', end: 'bottom top', scrub: 1 },
+          })
+        })
+      }
     }, root)
     return () => context.revert()
   }, [loaded])
@@ -152,6 +200,12 @@ function App() {
       <div className="noise" />
       <div className="cursor-glow" />
       <div className="progress-bar"><i /></div>
+      <div className="chapter-wipe" aria-hidden="true">
+        <span className="chapter-index">01</span>
+        <strong className="chapter-name">MANIFIESTO</strong>
+        <span className="chapter-direction">NUEVA ESCENA / SCROLL</span>
+        <i />
+      </div>
 
       <header className="site-header">
         <a className="logo" href="#top" aria-label="Inicio">LN<span>®</span></a>
