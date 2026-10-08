@@ -219,11 +219,35 @@ function App() {
           </div>
         </div>
         <nav className="innovation-nav" aria-label="Navegación por misiones">
-          <a href="#work"><span>01</span><div><strong>MONOPLAZA</strong><small>Proyectos · velocidad</small></div><i /></a>
-          <a href="#experience"><span>02</span><div><strong>COHETE</strong><small>Trayectoria · impulso</small></div><i /></a>
-          <a href="#about"><span>03</span><div><strong>AVIÓN</strong><small>Perfil · visión</small></div><i /></a>
+          <a href="#velocity"><span>01</span><div><strong>MONOPLAZA</strong><small>Producto · velocidad</small></div><i /></a>
+          <a href="#launch"><span>02</span><div><strong>COHETE</strong><small>Sistemas · impulso</small></div><i /></a>
+          <a href="#flight"><span>03</span><div><strong>AVIÓN</strong><small>Diseño · dirección</small></div><i /></a>
         </nav>
         <div className="scroll-note"><span>Scroll para explorar</span><i /></div>
+      </section>
+
+      <section className="vehicle-journey" aria-label="Viaje por mis capacidades">
+        <article className="journey-step" id="velocity">
+          <div className="journey-copy">
+            <span>01 / VELOCIDAD</span>
+            <h2>DE LA IDEA<br />AL PROTOTIPO.</h2>
+            <p>Itero rápido sin perder precisión: producto, interfaz y código avanzan en la misma dirección.</p>
+          </div>
+        </article>
+        <article className="journey-step journey-step-right" id="launch">
+          <div className="journey-copy">
+            <span>02 / IMPULSO</span>
+            <h2>SISTEMAS LISTOS<br />PARA CRECER.</h2>
+            <p>Arquitectura, integraciones y despliegue pensados como partes de una sola misión.</p>
+          </div>
+        </article>
+        <article className="journey-step" id="flight">
+          <div className="journey-copy">
+            <span>03 / DIRECCIÓN</span>
+            <h2>DISEÑO CON<br />UNA RAZÓN.</h2>
+            <p>Cada interacción guía, informa y deja espacio para que el producto sea el protagonista.</p>
+          </div>
+        </article>
       </section>
 
       <section className="manifesto section-shell">
