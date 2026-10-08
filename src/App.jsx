@@ -218,6 +218,11 @@ function App() {
             <a href="#work" className="round-button" aria-label="Ver proyectos"><ArrowDownRight /></a>
           </div>
         </div>
+        <nav className="innovation-nav" aria-label="Navegación por misiones">
+          <a href="#work"><span>01</span><div><strong>MONOPLAZA</strong><small>Proyectos · velocidad</small></div><i /></a>
+          <a href="#experience"><span>02</span><div><strong>COHETE</strong><small>Trayectoria · impulso</small></div><i /></a>
+          <a href="#about"><span>03</span><div><strong>AVIÓN</strong><small>Perfil · visión</small></div><i /></a>
+        </nav>
         <div className="scroll-note"><span>Scroll para explorar</span><i /></div>
       </section>
 
