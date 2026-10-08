@@ -1,5 +1,5 @@
 import React, { lazy, Suspense, useEffect, useLayoutEffect, useRef, useState } from 'react'
-import { ArrowDownRight, ArrowUpRight, Github, Menu, X } from 'lucide-react'
+import { ArrowDownRight, ArrowUpRight, Github, Linkedin, Mail, Menu, X } from 'lucide-react'
 import gsap from 'gsap'
 import { ScrollTrigger } from 'gsap/ScrollTrigger'
 
@@ -48,6 +48,33 @@ const projects = [
     image: asset('projects/tournify.webp'),
     url: 'https://github.com/LuisNafate/Tournify',
     accent: '#b18cff',
+  },
+]
+
+const experience = [
+  {
+    period: 'ENE 2026 — ACTUAL',
+    title: 'RESET',
+    role: 'UI/UX Designer · Frontend Developer',
+    description: 'Producto web y móvil para registrar avances, visualizar progreso y acompañar procesos de abstinencia mediante una interfaz responsiva.',
+    stack: 'Next.js · TypeScript · PostgreSQL · Prisma · Docker',
+    url: 'https://github.com/LuisNafate/reset-frontend',
+  },
+  {
+    period: 'AGO — DIC 2025',
+    title: 'AUTOSYNC',
+    role: 'UI/UX Designer · Frontend Developer',
+    description: 'Aplicación Android para administrar mantenimientos, reparaciones y gastos de vehículos, con notificaciones y almacenamiento en la nube.',
+    stack: 'Kotlin · Firebase · Android SDK · Figma',
+    url: 'https://github.com/LuisNafate/Autosync-APP',
+  },
+  {
+    period: 'MAR — AGO 2025',
+    title: 'WHEELY',
+    role: 'Frontend Developer · Integraciones API · QA',
+    description: 'Plataforma para consultar rutas de transporte público en Tuxtla Gutiérrez, desplegada sobre infraestructura AWS EC2.',
+    stack: 'JavaScript · REST APIs · AWS EC2 · Accessibility',
+    url: 'https://github.com/LuisNafate/Wheely',
   },
 ]
 
@@ -169,6 +196,7 @@ function App() {
         <div className="availability"><i /> Disponible para nuevas ideas</div>
         <nav className={menuOpen ? 'open' : ''} aria-label="Navegación principal">
           <a href="#work" onClick={closeMenu}>Proyectos</a>
+          <a href="#experience" onClick={closeMenu}>Trayectoria</a>
           <a href="#about" onClick={closeMenu}>Perfil</a>
           <a href="#contact" onClick={closeMenu}>Contacto</a>
         </nav>
@@ -179,14 +207,14 @@ function App() {
         <div className="hud hud-left"><span>LAT 16.75° N</span><span>LON 93.12° W</span></div>
         <div className="hud hud-right"><span>SYSTEM / 2026</span><span className="online">ONLINE</span></div>
         <div className="hero-copy">
-          <p className="hero-meta"><span>Creative developer</span><span>Tuxtla Gutiérrez · MX</span></p>
+          <p className="hero-meta"><span>Frontend · UI/UX · Product</span><span>Tuxtla Gutiérrez · MX</span></p>
           <h1>
             <span className="hero-line"><span>CONSTRUYO</span></span>
             <span className="hero-line outline"><span>LO QUE AÚN</span></span>
             <span className="hero-line indent"><span>NO EXISTE.</span></span>
           </h1>
           <div className="hero-actions">
-            <p>Software, interfaces y experimentos digitales donde la ingeniería se encuentra con una obsesión por los detalles.</p>
+            <p>Desarrollo productos web y móviles con React, Next.js y Kotlin, combinando ingeniería, UI/UX y una obsesión por los detalles.</p>
             <a href="#work" className="round-button" aria-label="Ver proyectos"><ArrowDownRight /></a>
           </div>
         </div>
@@ -228,9 +256,48 @@ function App() {
         <a className="all-work" href="https://github.com/LuisNafate?tab=repositories" target="_blank" rel="noreferrer" data-reveal><span>Ver todos los repositorios</span><ArrowUpRight /></a>
       </section>
 
+      <section className="career section-shell" id="experience">
+        <div className="section-heading" data-reveal>
+          <div className="section-kicker"><span>03</span> Trayectoria</div>
+          <h2>EXPERIENCIA<br /><em>APLICADA.</em></h2>
+          <p>Proyectos con responsabilidades concretas: diseño de producto, implementación frontend, integraciones, pruebas y despliegue.</p>
+        </div>
+        <div className="career-layout">
+          <div className="experience-list">
+            {experience.map((item) => (
+              <a href={item.url} target="_blank" rel="noreferrer" key={item.title} data-reveal>
+                <span className="experience-period">{item.period}</span>
+                <div>
+                  <p>{item.role}</p>
+                  <h3>{item.title}</h3>
+                  <p className="experience-description">{item.description}</p>
+                  <span className="experience-stack">{item.stack}</span>
+                </div>
+                <ArrowUpRight />
+              </a>
+            ))}
+          </div>
+          <aside className="credentials" data-reveal>
+            <div>
+              <span>FORMACIÓN</span>
+              <h3>Ingeniería en Tecnologías de la Información e Innovación Digital</h3>
+              <p>Universidad Politécnica de Chiapas · 5.º semestre</p>
+              <small>Agosto 2024 — presente</small>
+            </div>
+            <div>
+              <span>CERTIFICACIONES</span>
+              <h3>AWS Academy Cloud Foundations</h3>
+              <p>Amazon Web Services · Abril 2025</p>
+              <h3>Professional Java</h3>
+              <p>Código Facilito · Junio 2025</p>
+            </div>
+          </aside>
+        </div>
+      </section>
+
       <section className="capabilities section-shell">
         <div className="section-heading compact" data-reveal>
-          <div className="section-kicker"><span>03</span> Capabilities</div>
+          <div className="section-kicker"><span>04</span> Capabilities</div>
           <h2>UN PERFIL.<br /><em>MUCHOS SISTEMAS.</em></h2>
         </div>
         <div className="capability-list">
@@ -247,21 +314,25 @@ function App() {
           <span>SUBJECT / LN-01</span>
         </div>
         <div className="about-copy" data-reveal>
-          <div className="section-kicker"><span>04</span> Sobre mí</div>
+          <div className="section-kicker"><span>05</span> Sobre mí</div>
           <h2>LUIS<br /><em>NAFATE</em></h2>
-          <p className="about-intro">Desarrollador mexicano que aprende construyendo.</p>
-          <p>Mi trabajo cruza aplicaciones web, móviles y de escritorio. He explorado análisis de audio, movilidad urbana, productividad, plataformas deportivas y experiencias alrededor de la Fórmula 1.</p>
-          <div className="stack"><span>React</span><span>Next.js</span><span>Angular</span><span>Flutter</span><span>Python</span><span>Java</span><span>TypeScript</span><span>Three.js</span></div>
+          <p className="about-intro">Frontend developer y diseñador UI/UX que aprende construyendo productos reales.</p>
+          <p>Estudio Ingeniería en Tecnologías de la Información e Innovación Digital. Trabajo entre diseño, frontend y producto: desde entender requisitos y prototipar en Figma hasta integrar APIs, probar y desplegar experiencias web y móviles.</p>
+          <div className="stack"><span>React</span><span>Next.js</span><span>TypeScript</span><span>Node.js</span><span>PostgreSQL</span><span>Prisma</span><span>Kotlin</span><span>Firebase</span><span>Docker</span><span>AWS</span><span>Figma</span></div>
         </div>
       </section>
 
       <footer id="contact">
         <div className="footer-orbit" aria-hidden="true"><i /><i /><i /></div>
         <div className="footer-copy section-shell" data-reveal>
-          <div className="section-kicker"><span>05</span> Siguiente misión</div>
+          <div className="section-kicker"><span>06</span> Siguiente misión</div>
           <p>¿TIENES UNA IDEA?</p>
           <h2>HAGAMOS QUE<br /><em>COBRE VIDA.</em></h2>
-          <a className="contact-link" href="https://github.com/LuisNafate" target="_blank" rel="noreferrer"><Github /><span>Conversemos en GitHub</span><ArrowUpRight /></a>
+          <div className="contact-links">
+            <a className="contact-link" href="mailto:luisnafate51@gmail.com"><Mail /><span>luisnafate51@gmail.com</span><ArrowUpRight /></a>
+            <a className="contact-link" href="https://linkedin.com/in/luis-nafate" target="_blank" rel="noreferrer"><Linkedin /><span>LinkedIn</span><ArrowUpRight /></a>
+            <a className="contact-link" href="https://github.com/LuisNafate" target="_blank" rel="noreferrer"><Github /><span>GitHub</span><ArrowUpRight /></a>
+          </div>
         </div>
         <div className="footer-bottom section-shell"><span>© {new Date().getFullYear()} Luis Nafate</span><span>Diseñado para explorar</span><a href="#top">Volver arriba ↑</a></div>
       </footer>
