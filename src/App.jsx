@@ -179,6 +179,14 @@ function App() {
   if (!loaded) return <Loader done={() => setLoaded(true)} />
 
   const closeMenu = () => setMenuOpen(false)
+  const goToMission = (event, id) => {
+    event.preventDefault()
+    const target = document.getElementById(id)
+    if (!target) return
+    const destination = Math.max(0, target.getBoundingClientRect().top + scrollY - 98)
+    history.replaceState(null, '', `#${id}`)
+    scrollTo(0, destination)
+  }
 
   return (
     <main ref={root}>
@@ -219,29 +227,29 @@ function App() {
           </div>
         </div>
         <nav className="innovation-nav" aria-label="Navegación por misiones">
-          <a href="#velocity"><span>01</span><div><strong>MONOPLAZA</strong><small>Producto · velocidad</small></div><i /></a>
-          <a href="#launch"><span>02</span><div><strong>COHETE</strong><small>Sistemas · impulso</small></div><i /></a>
-          <a href="#flight"><span>03</span><div><strong>AVIÓN</strong><small>Diseño · dirección</small></div><i /></a>
+          <a href="#velocity" onClick={(event) => goToMission(event, 'velocity')}><span>01</span><div><strong>MONOPLAZA</strong><small>Producto · velocidad</small></div><i /></a>
+          <a href="#launch" onClick={(event) => goToMission(event, 'launch')}><span>02</span><div><strong>COHETE</strong><small>Sistemas · impulso</small></div><i /></a>
+          <a href="#flight" onClick={(event) => goToMission(event, 'flight')}><span>03</span><div><strong>AVIÓN</strong><small>Diseño · dirección</small></div><i /></a>
         </nav>
         <div className="scroll-note"><span>Scroll para explorar</span><i /></div>
       </section>
 
       <section className="vehicle-journey" aria-label="Viaje por mis capacidades">
-        <article className="journey-step" id="velocity">
+        <article className="journey-step" id="velocity" data-index="01">
           <div className="journey-copy">
             <span>01 / VELOCIDAD</span>
             <h2>DE LA IDEA<br />AL PROTOTIPO.</h2>
             <p>Itero rápido sin perder precisión: producto, interfaz y código avanzan en la misma dirección.</p>
           </div>
         </article>
-        <article className="journey-step journey-step-right" id="launch">
+        <article className="journey-step journey-step-right" id="launch" data-index="02">
           <div className="journey-copy">
             <span>02 / IMPULSO</span>
             <h2>SISTEMAS LISTOS<br />PARA CRECER.</h2>
             <p>Arquitectura, integraciones y despliegue pensados como partes de una sola misión.</p>
           </div>
         </article>
-        <article className="journey-step" id="flight">
+        <article className="journey-step" id="flight" data-index="03">
           <div className="journey-copy">
             <span>03 / DIRECCIÓN</span>
             <h2>DISEÑO CON<br />UNA RAZÓN.</h2>
